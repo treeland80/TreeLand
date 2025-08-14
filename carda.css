@@ -1,0 +1,100 @@
+
+.icards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.icard {
+  width: 370px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.icard img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.icard-image-container {
+  position: relative;
+}
+
+.ibadges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.ibadge {
+  background-color: #3b82f6;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.ibadge.green {
+  background-color: #22c55e;
+}
+
+.icard-body {
+  padding: 15px;
+}
+
+.icard h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.ilocation {
+  color: gray;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.ilocation::before {
+  content: '📍';
+  margin-right: 5px;
+}
+
+.idescription {
+  color: #444;
+  margin: 10px 0;
+}
+
+.iprogress-label {
+  margin-bottom: 4px;
+  color: #555;
+}
+
+.iprogress-bar {
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.iprogress-bar-fill {
+  height: 100%;
+  width: 42%;
+  background-color: #22c55e;
+}
+
+.iprogress-text {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+

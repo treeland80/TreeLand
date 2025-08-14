@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Approbation Produits – TreeLand</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h2 {
+      color: #006600;
+      text-align: center;
+    }
+    .pending-product {
+      background: white;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .pending-product img {
+      width: 100px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .pending-info {
+      flex-grow: 1;
+    }
+    button {
+      padding: 8px 12px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      transition: background 0.3s;
+    }
+    .approve-btn {
+      background-color: #22c55e;
+    }
+    .approve-btn:hover {
+      background-color: #16a34a;
+    }
+    .reject-btn {
+      background-color: #ef4444;
+    }
+    .reject-btn:hover {
+      background-color: #b91c1c;
+    }
+  </style>
+</head>
+<body>
+  <h2>🧾 Produits en attente d’approbation</h2>
+  <div id="pendingList"></div>
+
+  <script>
+    let produits = JSON.parse(localStorage.getItem("produitsTreeLand") || "[]");
+    const container = document.getElementById("pendingList");
+
+    function afficherProduitsEnAttente() {
+      container.innerHTML = "";
+      let hasPending = false;
+      produits.forEach((p, i) => {
+        if (!p.approuve) {
+          hasPending = true;
+          const card = document.createElement("div");
+          card.className = "pending-product";
+          card.innerHTML = `
+            <img src="${p.image}" alt="${p.nom}">
+            <div class="pending-info">
+              <strong>${p.nom}</strong> - ${p.prix} FCFA<br>
+              <small>${p.description}</small>
+            </div>
+            <button class="approve-btn" onclick="approuver(${i})">✅ Approuver</button>
+            <button class="reject-btn" onclick="rejeter(${i})">❌ Rejeter</button>
+          `;
+          container.appendChild(card);
+        }
+      });
+      if (!hasPending) {
+        container.innerHTML = "<p>Tous les produits ont été approuvés ou il n'y a pas de produits en attente.</p>";
+      }
+    }
+
+    function approuver(index) {
+      produits[index].approuve = true;
+      localStorage.setItem("produitsTreeLand", JSON.stringify(produits));
+      alert(`Produit "${produits[index].nom}" approuvé !`);
+      afficherProduitsEnAttente();
+    }
+
+    function rejeter(index) {
+      if (confirm(`Voulez-vous vraiment rejeter le produit "${produits[index].nom}" ?`)) {
+        produits.splice(index, 1);
+        localStorage.setItem("produitsTreeLand", JSON.stringify(produits));
+        alert("Produit rejeté et supprimé.");
+        afficherProduitsEnAttente();
+      }
+    }
+
+    afficherProduitsEnAttente();
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.ecard {
+  width: 480px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.ecard img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.ecard-content {
+  padding: 10px;
+}
+
+.ecard .tag {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.ecard .rating {
+  float: right;
+  color: #666;
+  font-size: 14px;
+}
+
+.ecard .rating i {
+  color: gold;
+  margin-right: 4px;
+}
+
+.ecard .title {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 5px 0 10px;
+}
+
+.ecard .description {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.ecard .location {
+  color: #777;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.ecard .location i {
+  margin-right: 6px;
+}
+
+.ecard .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ecard .seeking {
+  font-size: 14px;
+  color: #555;
+}
+
+.ecard .seeking span {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.ecard .contact-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 7px 13px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ecard .contact-btn:hover {
+  background-color: #005dc1;
+}

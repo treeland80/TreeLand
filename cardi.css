@@ -1,0 +1,73 @@
+/* 📌 Styles section produits */
+.oproducts {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.oproducts h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.oproducts p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* 📌 Carte produit */
+.oproduct-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  padding: 1px;
+  width: 110px;
+  text-align: left;
+}
+
+.oproduct-card img {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+.oproduct-name {
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.oproduct-price {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 16px;
+  margin:5px;
+}
+
+.oproduct-condition {
+  color: #888;
+  font-size: 14px;
+  margin:5px;
+}
+
+/* 📌 Bouton voir plus */
+.oview-button {
+  margin-top: 30px;
+  text-align: center; /* Centre le bouton */
+}
+
+.oview-button a {
+  text-decoration: none;
+  border: 1px solid #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #007bff;
+  font-weight: bold;
+  display: inline-block; /* Pour un bon centrage */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.oview-button a:hover {
+  background-color: #007bff;
+  color: white;
+}

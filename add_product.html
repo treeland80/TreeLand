@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>  <meta charset="UTF-8">  <title>Ajout de Produits – TreeLand</title>  <style>
+  
+    body {
+  
+      font-family: Arial, sans-serif;
+  
+      background: #f5f5f5;
+  
+      padding: 20px;
+  
+    }
+  
+    h2 { color: #006600; text-align: center; }
+  
+    .product-form {
+  
+      background: white;
+  
+      max-width: 400px;
+  
+      margin: 20px auto;
+  
+      padding: 20px;
+  
+      border-radius: 12px;
+  
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  
+    }
+  
+    .product-form input, .product-form select, .product-form button {
+  
+      width: 100%; padding: 10px; margin-top: 10px;
+  
+      font-size: 1rem; border: 1px solid #ccc; border-radius: 6px;
+  
+    }
+  
+    .product-form button {
+  
+      background: #006600; color: white; border: none;
+  
+      cursor: pointer; transition: background 0.3s;
+  
+    }
+  
+    .product-form button:hover { background: #004d00; }
+  
+    .gallery { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 20px; }
+  
+    .card {
+  
+      background: white; width: 100px; padding: 10px; border-radius: 10px;
+  
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1); text-align: center;
+  
+    }
+  
+    .card img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; }
+  
+    .add-button {
+  
+      margin-top: 10px; background: #006600; color: white;
+  
+      padding: 8px; border: none; border-radius: 6px; cursor: pointer;
+  
+    }
+  
+    .category-section { margin-top: 40px; }
+  
+    .category-section h3 { text-align: center; color: #333; }
+  
+  </style></head><body>  <h2>Ajouter un nouveau produit</h2>  <form id="addProductForm" class="product-form"><input type="text" id="productName" placeholder="Nom du produit" required>
+
+<input type="text" id="productDesc" placeholder="Description" required>
+
+<input type="number" id="productPrice" placeholder="Prix (FCFA)" required>
+
+<select id="productCategory" required>
+
+  <option value="">-- Choisir une catégorie --</option>
+
+  <option value="friandise">Friandises</option>
+
+  <option value="boisson">Boissons</option>
+
+  <option value="snack">Snacks</option>
+
+</select>
+
+<div id="newCategoryField" style="display: none;">
+
+  <input type="text" id="newCategory" placeholder="Ou créez une nouvelle catégorie">
+
+</div>
+
+<input type="file" id="productImage" accept="image/*" required>
+
+<button type="submit">Ajouter le produit</button>
+
+  </form>  <!-- Catégories existantes -->  <div id="categoriesContainer"><div class="category-section" id="friandiseSection">
+
+  <h3>🍬 Friandises</h3>
+
+  <div class="gallery" id="friandise"></div>
+
+</div>
+
+<div class="category-section" id="boissonSection">
+
+  <h3>🥤 Boissons</h3>
+
+  <div class="gallery" id="boisson"></div>
+
+</div>
+
+<div class="category-section" id="snackSection">
+
+  <h3>🍟 Snacks</h3>
+
+  <div class="gallery" id="snack"></div>
+
+</div>
+<script>
+  const isAdmin = true; // Changer à false pour un vendeur classique
+
+  if (isAdmin) {
+    document.getElementById("newCategoryField").style.display = "block";
+  }
+
+  function afficherProduit(prod) {
+    // Crée une carte
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <img src="${prod.image}" alt="${prod.nom}">
+      <h3>${prod.nom}</h3>
+      <p>${prod.description}</p>
+      <p>${prod.prix} FCFA</p>
+      <button class="add-button" onclick="addToCart('${prod.nom}', ${prod.prix})">Ajouter au panier</button>
+    `;
+
+    let gallery = document.getElementById(prod.categorie);
+    if (!gallery) {
+      // Si la catégorie n’existe pas encore, on la crée
+      const section = document.createElement("div");
+      section.className = "category-section";
+      section.id = prod.categorie + "Section";
+      section.innerHTML = `<h3>${prod.categorie}</h3><div class="gallery" id="${prod.categorie}"></div>`;
+      document.getElementById("categoriesContainer").appendChild(section);
+      gallery = document.getElementById(prod.categorie);
+    }
+    gallery.appendChild(card);
+  }
+
+  function chargerProduits() {
+    const produits = JSON.parse(localStorage.getItem("produitsTreeLand") || "[]");
+    produits.forEach(afficherProduit);
+  }
+
+  document.getElementById("addProductForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("productName").value;
+    const desc = document.getElementById("productDesc").value;
+    const price = document.getElementById("productPrice").value;
+    let category = document.getElementById("productCategory").value;
+    const newCategory = document.getElementById("newCategory").value.trim();
+    const imageFile = document.getElementById("productImage").files[0];
+
+    if (!imageFile || (!category && newCategory === "")) {
+      alert("Veuillez remplir tous les champs.");
+      return;
+    }
+
+    if (newCategory !== "") {
+      if (!isAdmin) {
+        alert("Seul l’administrateur peut créer une nouvelle catégorie.");
+        return;
+      }
+      category = newCategory.toLowerCase().replace(/\s+/g, "_");
+      const option = document.createElement("option");
+      option.value = category;
+      option.textContent = newCategory;
+      document.getElementById("productCategory").appendChild(option);
+      document.getElementById("productCategory").value = category; // sélectionner la nouvelle catégorie
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const imgURL = e.target.result;
+
+      const produit = {
+        nom: name,
+        description: desc,
+        prix: price,
+        categorie: category,
+        image: imgURL
+      };
+
+      // Sauvegarde dans localStorage
+      const produits = JSON.parse(localStorage.getItem("produitsTreeLand") || "[]");
+      produits.push(produit);
+      localStorage.setItem("produitsTreeLand", JSON.stringify(produits));
+
+      // Affichage immédiat
+      afficherProduit(produit);
+
+      document.getElementById("addProductForm").reset();
+    };
+    reader.readAsDataURL(imageFile);
+  });
+
+  function addToCart(nom, prix) {
+    alert(`🛒 ${nom} ajouté au panier pour ${prix} FCFA !`);
+  }
+
+  // Chargement initial
+  chargerProduits();
+</script>
+  </div>  </body></html>

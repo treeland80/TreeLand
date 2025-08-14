@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panier TreeLand</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fff;
+    }
+    .produit-panier {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .produit-panier img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .produit-info p {
+      margin: 4px 0;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    button {
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: darkgreen;
+    }
+    #confirmation {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    #vider-panier-btn {
+      background: #cc3300;
+      margin-top: 10px;
+    }
+    #vider-panier-btn:hover {
+      background: #992200;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Votre panier</h2>
+  <div id="contenu-panier"></div>
+  <h3 id="total">Total : 0 FCFA</h3>
+
+  <button id="vider-panier-btn">Vider le panier</button>
+
+  <form id="commande-form">
+    <input type="text" id="nom" placeholder="Nom" required />
+    <input type="tel" id="telephone" placeholder="Téléphone" required />
+    <input type="text" id="adresse" placeholder="Adresse" required />
+    <button type="submit">Passer la commande</button>
+  </form>
+
+  <div id="confirmation"></div>
+<script>
+  // Récupère le panier depuis localStorage
+  function getPanier() {
+    return JSON.parse(localStorage.getItem("panierTreeLand") || "[]");
+  }
+
+  // Sauvegarde le panier dans localStorage
+  function setPanier(panier) {
+    localStorage.setItem("panierTreeLand", JSON.stringify(panier));
+  }
+
+  // Affiche le panier avec gestion quantité et suppression
+  function afficherPanier() {
+    const panier = getPanier();
+    const zone = document.getElementById("contenu-panier");
+    let total = 0;
+    zone.innerHTML = '';
+
+    if (panier.length === 0) {
+      zone.innerHTML = "<p>Aucun produit dans le panier.</p>";
+      document.getElementById("total").textContent = "Total : 0 FCFA";
+      return;
+    }
+
+    panier.forEach(produit => {
+      const div = document.createElement("div");
+      div.className = "produit-panier";
+      div.dataset.id = produit.id;
+      div.innerHTML = `
+        <img src="${produit.image}" alt="${produit.nom}" />
+        <div class="produit-info">
+          <p><strong>${produit.nom}</strong></p>
+          <p>Prix unitaire : ${produit.prix} FCFA</p>
+          <p>
+            Quantité : 
+            <button class="moins-btn" aria-label="Réduire quantité">-</button>
+            <span class="quantite">${produit.quantite}</span>
+            <button class="plus-btn" aria-label="Augmenter quantité">+</button>
+          </p>
+          <p>Sous-total : ${(produit.prix * produit.quantite).toLocaleString()} FCFA</p>
+          <button class="supprimer-btn" aria-label="Supprimer produit">Supprimer</button>
+        </div>
+      `;
+      zone.appendChild(div);
+
+      total += produit.prix * produit.quantite;
+    });
+
+    document.getElementById("total").textContent = `Total : ${total.toLocaleString()} FCFA`;
+
+    // Ajout des événements sur les boutons +, -, supprimer
+    ajouterListeners();
+  }
+
+  // Fonction pour gérer les clics sur +, -, supprimer
+  function ajouterListeners() {
+    const panier = getPanier();
+
+    document.querySelectorAll(".plus-btn").forEach((btn, i) => {
+      btn.onclick = () => {
+        panier[i].quantite++;
+        setPanier(panier);
+        afficherPanier();
+      };
+    });
+
+    document.querySelectorAll(".moins-btn").forEach((btn, i) => {
+      btn.onclick = () => {
+        if (panier[i].quantite > 1) {
+          panier[i].quantite--;
+          setPanier(panier);
+          afficherPanier();
+        }
+      };
+    });
+
+    document.querySelectorAll(".supprimer-btn").forEach((btn, i) => {
+      btn.onclick = () => {
+        if (confirm(`Supprimer "${panier[i].nom}" du panier ?`)) {
+          panier.splice(i, 1);
+          setPanier(panier);
+          afficherPanier();
+        }
+      };
+    });
+  }
+
+  // Vider panier au clic
+  document.getElementById("vider-panier-btn").addEventListener("click", () => {
+    if (confirm("Voulez-vous vraiment vider le panier ?")) {
+      localStorage.removeItem("panierTreeLand");
+      afficherPanier();
+      document.getElementById("confirmation").textContent = "Le panier a été vidé.";
+    }
+  });
+
+  // Gestion du formulaire de commande (inchangé)
+  document.getElementById("commande-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const panier = getPanier();
+    if (panier.length === 0) {
+      alert("Votre panier est vide.");
+      return;
+    }
+
+    const nom = document.getElementById("nom").value.trim();
+    const telephone = document.getElementById("telephone").value.trim();
+    const adresse = document.getElementById("adresse").value.trim();
+
+    const recap = panier.map(p => `- ${p.nom} (x${p.quantite}) : ${(p.prix * p.quantite).toLocaleString()} FCFA`).join("%0A");
+
+    const totalCommande = panier.reduce((sum, p) => sum + (p.prix * p.quantite), 0);
+
+    const message =
+      `*Commande TreeLand*%0A%0A` +
+      `👤 Nom : ${nom}%0A` +
+      `📞 Téléphone : ${telephone}%0A` +
+      `📍 Adresse : ${adresse}%0A` +
+      `🛍️ Produits :%0A${recap}%0A` +
+      `💰 Total : ${totalCommande.toLocaleString()} FCFA`;
+
+    const numero = "2250788445570"; // Remplace par ton numéro WhatsApp
+    const whatsappURL = `https://wa.me/${numero}?text=${message}`;
+
+    window.open(whatsappURL, "_blank");
+
+    localStorage.removeItem("panierTreeLand");
+    afficherPanier();
+    this.reset();
+    document.getElementById("confirmation").textContent = "✅ Commande envoyée par WhatsApp";
+  });
+
+  // Affichage initial du panier
+  afficherPanier();
+</script>
+  
+
+</body>
+</html>
