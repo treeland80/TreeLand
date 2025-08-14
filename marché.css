@@ -8,14 +8,16 @@
   --text-light: #fff;
 }
 
+/* ===== Body et structure ===== */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #003366;
+  background: var(--primary);
+  -webkit-tap-highlight-color: transparent; /* évite le surlignage au clic sur mobile */
 }
 
-/* Barre tout en haut */
+/* ===== Navbar en haut ===== */
 .navbar {
   position: fixed;
   top: 0;
@@ -25,29 +27,28 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 80px; /* hauteur fixe */
+  height: 10vh; /* hauteur proportionnelle à l’écran */
+  min-height: 60px; /* taille minimum pour petits écrans */
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  color: var(--primary);
+  color: var(--secondary);
   font-weight: bold;
   border-bottom: 1px solid #ccc;
 }
-/* Décalage du contenu sous la navbar */
 .main-content {
-  margin-top: 80px; /* un peu plus que la hauteur de la navbar */
+  margin-top: 10vh; /* décale le contenu sous la navbar */
 }
 .navbar div {
   padding: 10px;
   font-weight: bold;
-  color: #444;
+  color: #fff;
 }
-
 .navbar .active {
-  border-bottom: 2px solid orange;
-  color: black;
+  border-bottom: 2px solid var(--secondary);
+  color: var(--secondary);
 }
 
-/* Barre de recherche */
+/* ===== Barre de recherche ===== */
 .search-bar, .categories, .products, .footer {
   padding: 10px;
   background: white;
@@ -60,13 +61,13 @@ body {
   border: 1px solid #ccc;
 }
 
-/* Catégories */
+/* ===== Catégories ===== */
 .categories {
   display: flex;
   gap: 10px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* scroll fluide iOS/Android */
 }
-
 .category {
   background: #eee;
   padding: 6px 12px;
@@ -74,20 +75,18 @@ body {
   white-space: nowrap;
   cursor: pointer;
 }
-
 .active-category {
-  background: orange;
+  background: var(--secondary);
   color: white;
   font-weight: bold;
 }
 
-/* Produits */
+/* ===== Produits ===== */
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 15px;
 }
-
 .product {
   background: white;
   border-radius: 10px;
@@ -96,7 +95,6 @@ body {
   padding: 10px;
   text-align: center;
 }
-
 .product img {
   width: 100%;
   height: 180px;
@@ -105,7 +103,6 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
-
 .product img.zoomed {
   position: fixed;
   top: 50%;
@@ -120,41 +117,44 @@ body {
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
   background: transparent;
 }
-
 .price {
   font-weight: bold;
-  color: green;
+  color: var(--success);
   margin-top: 5px;
 }
 
-/* Footer */
-.footer {
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid #ccc;
+/* ===== Footer et navigation en bas ===== */
+.footer, .bottom-nav {
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   background: white;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
   padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
 }
 
-.footer div {
-  text-align: center;
-  font-size: 12px;
+.bottom-nav a {
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: bold;
+  font-size: 14px;
 }
 
-/* Titre principal */
+/* ===== Titres ===== */
 h1 {
   text-align: center;
-  font-size: 28px;
+  font-size: 6vw; /* taille proportionnelle à l’écran */
   margin: 20px 0;
-  color: #FFD700;
+  color: var(--secondary);
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
 }
-
 h1::after {
   content: '';
   display: block;
@@ -165,7 +165,7 @@ h1::after {
   border-radius: 2px;
 }
 
-/* Boutons */
+/* ===== Boutons ===== */
 button {
   margin-top: 10px;
   background: #006600;
@@ -174,27 +174,17 @@ button {
   padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
 }
-
 button:hover {
   background: #004d00;
 }
 
-/* Navigation en bas */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
-  background: var(--primary);
-  padding: 10px 0;
-  z-index: 1000;
-}
-
-.bottom-nav a {
-  text-decoration: none;
-  color: var(--secondary);
-  font-weight: bold;
+/* ===== Media queries optionnelles pour petits écrans ===== */
+@media (max-width: 360px) {
+  .product img { height: 140px; }
+  h1 { font-size: 18px; }
+  .navbar { height: 8vh; }
+  .main-content { margin-top: 8vh; }
 }
