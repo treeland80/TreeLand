@@ -1,0 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
+<h2>🧾 Gérer mon compte</h2>
+<ul>
+  <li><a href="parametres.php">⚙️ Paramètres</a></li>
+  <li><a href="commandes.php">📦 Mes commandes</a></li>
+  <li><a href="logout.php">🚪 Déconnexion</a></li>
+</ul>
