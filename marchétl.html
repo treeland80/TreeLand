@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>TreeLand - Marché</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="marché.css" />
+  
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="active">Marché</div>
+    <div>Catégories</div>
+    <div>Panier</div>
+  </header>
+
+  <h1><strong>🛒 ____Marché____ 🛍</strong></h1>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Recherche 🔍" />
+  </div>
+
+  <div class="categories">
+    <div class="category active-category" data-cat="tout">Tout</div>
+    <div class="category" data-cat="friandise">Friandises</div>
+    <div class="category" data-cat="boisson">Boissons</div>
+    <div class="category" data-cat="snack">Snacks</div>
+  </div>
+
+  <section class="products" id="marketProducts">
+    <!-- Produits approuvés s'afficheront ici -->
+  </section>
+
+  <footer class="footer">
+    <div>🏠 Accueil</div>
+    <div>🛍️ Marché</div>
+    <div>👤 Profil</div>
+  </footer>
+<script>
+  const produits = JSON.parse(localStorage.getItem("produitsTreeLand") || "[]");
+  const container = document.getElementById("marketProducts");
+  const categories = document.querySelectorAll(".category");
+
+  function afficherProduits(categorie) {
+    container.innerHTML = "";
+    let count = 0;
+
+    produits.forEach(p => {
+      if (p.approuve === true && (categorie === "tout" || p.categorie === categorie)) {
+        count++;
+        const card = document.createElement("div");
+        card.className = "product";
+        card.dataset.id = p.id;
+        // ATTENTION : Template literal (backticks) nécessaires ici pour HTML multi-lignes
+        card.innerHTML = `
+          <img src="${p.image}" alt="${p.nom}" />
+          <p class="price">F CFA ${p.prix}</p>
+          <p class="product-name">${p.nom}</p>
+          <button>Ajouter au panier</button>
+        `;
+        container.appendChild(card);
+      }
+    });
+
+    if (count === 0) {
+      container.innerHTML = "<p>Aucun produit trouvé pour cette catégorie.</p>";
+    }
+  }
+
+  // Gestion du clic sur une catégorie
+  categories.forEach(cat => {
+    cat.addEventListener("click", () => {
+      categories.forEach(c => c.classList.remove("active-category"));
+      cat.classList.add("active-category");
+      afficherProduits(cat.dataset.cat);
+    });
+  });
+
+  // Toujours récupérer le panier à chaque ajout pour éviter les problèmes de synchro
+  function getPanier() {
+    return JSON.parse(localStorage.getItem("panierTreeLand") || "[]");
+  }
+
+  function setPanier(panier) {
+    localStorage.setItem("panierTreeLand", JSON.stringify(panier));
+  }
+
+  function ajouterAuPanier(produit) {
+    let panier = getPanier();
+
+    const index = panier.findIndex(item => item.id === produit.id);
+    if (index !== -1) {
+      panier[index].quantite++;
+    } else {
+      panier.push({ ...produit, quantite: 1 });
+    }
+    setPanier(panier);
+    alert(`"${produit.nom}" a été ajouté au panier.`);
+  }
+
+  container.addEventListener('click', event => {
+    if (event.target.tagName === 'BUTTON') {
+      const card = event.target.closest('.product');
+      if (!card) return;
+
+      const produit = {
+        id: card.dataset.id,
+        nom: card.querySelector('.product-name').textContent,
+        prix: parseFloat(card.querySelector('.price').textContent.replace('F CFA ', '').trim()),
+        image: card.querySelector('img').src
+      };
+
+      ajouterAuPanier(produit);
+    }
+  });
+
+  // Zoom sur image (idem)
+  document.addEventListener("click", e => {
+    if (e.target.tagName === "IMG" && e.target.closest(".product")) {
+      document.querySelectorAll(".product img").forEach(img => {
+        if (img !== e.target) img.classList.remove("zoomed");
+      });
+      e.target.classList.toggle("zoomed");
+    }
+  });
+
+  // Afficher tous les produits au démarrage
+  afficherProduits("tout");
+</script>
+  
+
+</body>
+</html>

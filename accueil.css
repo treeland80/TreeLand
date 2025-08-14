@@ -1,0 +1,138 @@
+/* 🎨 Variables globales */
+:root {
+  --primary: #003366;
+  --secondary: #FFD700;
+  --accent: #007bff;
+  --success: #22c55e;
+  --text-dark: #000;
+  --text-light: #fff;
+}
+
+/* Corps */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--text-dark);
+  background-color: #f5f5f5; /* Plus neutre, plus équilibré */
+}
+
+/* Barre tout en haut */
+.prehead {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px; /* hauteur fixe */
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* En-tête */
+header {
+  padding: 20px 10px 15px;
+  background: var(--primary);
+  color: var(--secondary);
+  text-align: center;
+  margin-top: 40px; /* Compense la hauteur .prehead */
+}
+
+/* Menu principal */
+nav ul {
+  display: flex;
+  justify-content: center;
+  background: var(--secondary);
+  margin: 0;
+  padding: 10px 0;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* Pied de page principal */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: var(--primary);
+  color: white;
+}
+
+/* Navigation en bas */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: var(--secondary);
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* Grand pied de page */
+.footer {
+  background-color: var(--primary);
+  color: white;
+  padding: 20px;
+  padding-bottom: 60px; /* espace au-dessus de la bottom-nav */
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* espace entre les liens */
+  flex-wrap: wrap; /* autorise le retour à la ligne si trop serré */
+}
+
+.footer-links a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .footer-links {
+    gap: 10px; /* espace réduit sur petit écran */
+  }
+}
+
+/* Icônes sociales */
+.footer-socials a img {
+  width: 24px;
+  height: 24px;
+  filter: invert(100%);
+}
+
+.footer-socials a:hover {
+  transform: scale(1.2);
+}
+.footer-socials a {
+    margin: 10px;
+  }

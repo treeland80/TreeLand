@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>TreeLand - Chargement</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #003366;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    .loader-image {
+      width: 150px;
+      height: 150px;
+      animation: bounce 2s infinite;
+    }
+    h1 {
+      color: #FFD700;
+    }
+
+    .loading-text {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #003366;
+      
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <img class="loader-image" src="img-000.png" alt="TreeLand Logo" />
+  <h1><strong>TreeLand</strong></h1>
+  <div class="loading-text">Chargement de TreeLand, veuillez patienter...</div>
+
+  <!-- Redirection automatique vers l'app après 3 secondes -->
+  <script>
+    setTimeout(() => {
+      window.location.href = "accueil.html"; // Page principale de l'app
+    }, 3000); // 3000 ms = 3 secondes
+  </script>
+</body>
+</html>
