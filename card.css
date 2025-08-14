@@ -1,0 +1,287 @@
+/* =================== VARIABLES GLOBALES =================== */
+:root {
+  --primary: #003366;
+  --secondary: #FFD700;
+  --accent: #007bff;
+  --success: #22c55e;
+  --text-dark: #000;
+  --text-light: #fff;
+}
+
+/* =================== CORPS =================== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--text-dark);
+  background-color: #f5f5f5;
+  line-height: 1.5;
+}
+
+/* =================== HEADER =================== */
+.prehead {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  color: var(--primary);
+  font-weight: bold;
+}
+
+header {
+  padding: 100px 20px 20px; /* 100px pour compenser .prehead */
+  background: var(--primary);
+  color: var(--secondary);
+  text-align: center;
+}
+
+/* =================== MENU PRINCIPAL =================== */
+nav ul {
+  display: flex;
+  justify-content: center;
+  background: var(--secondary);
+  margin: 0;
+  padding: 10px 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  margin: 5px 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* =================== FOOTER =================== */
+footer, .footer {
+  background-color: var(--primary);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+.footer-socials a img {
+  width: 24px;
+  height: 24px;
+  filter: invert(100%);
+  margin: 10px;
+  transition: transform 0.3s;
+}
+
+.footer-socials a:hover img {
+  transform: scale(1.2);
+}
+
+/* =================== BOTTOM NAV =================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: var(--secondary);
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* =================== CARTES =================== */
+.card, .ecard, .icard, .acard {
+  width: 100%;
+  max-width: 370px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover, .ecard:hover, .icard:hover, .acard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card img, .ecard img, .icard img, .acard-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-content, .ecard-content, .icard-body, .acard-body {
+  padding: 15px;
+}
+
+.title, .ecard .title, .icard h3, .acard-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 5px 0 10px;
+}
+
+.description, .ecard .description, .icard .idescription, .acard-description {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.location, .ecard .location, .icard .ilocation, .acard-location {
+  color: #777;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tag, .ecard .tag, .ibadge, .acard-tag {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.contact-btn, .ecard .contact-btn, .acard-btn {
+  background-color: var(--accent);
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.contact-btn:hover, .ecard .contact-btn:hover, .acard-btn:hover {
+  background-color: #005dc1;
+}
+
+/* =================== SECTION PRODUITS =================== */
+.oproducts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 10px;
+}
+
+.oproduct-card {
+  background: white;
+  border-radius: 10px;
+  width: 100px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.oproduct-card img {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+.oproduct-name {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.oproduct-price {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 14px;
+  margin: 3px 0;
+}
+
+.oproduct-condition {
+  color: #888;
+  font-size: 12px;
+  margin: 3px 0 8px;
+}
+
+.oview-button {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.oview-button a {
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  padding: 8px 16px;
+  border-radius: 5px;
+  color: var(--accent);
+  font-weight: bold;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.oview-button a:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+  }
+
+  .oproduct-card {
+    width: 45%;
+    margin-bottom: 15px;
+  }
+
+  .card, .ecard, .icard, .acard {
+    max-width: 90%;
+    margin: 10px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .oproduct-card {
+    width: 100%;
+  }
+
+  .prehead {
+    height: 60px;
+    font-size: 14px;
+  }
+
+  header {
+    padding-top: 80px;
+  }
+}
