@@ -18,28 +18,28 @@
     }
 
     .loader-image {
-      width: 150px;
-      height: 150px;
+      width: 35vw; /* 35% de la largeur de l'écran */
+      max-width: 300px; /* limite max pour éviter trop grand sur PC */
       animation: bounce 2s infinite;
     }
+
     h1 {
       color: #FFD700;
+      font-size: 6vw; /* taille adaptable */
+      margin: 10px 0 0;
     }
 
     .loading-text {
       margin-top: 20px;
-      font-size: 1.2rem;
-      color: #003366;
-      
+      font-size: 4vw; /* taille adaptable */
+      color: #FFD700; /* plus visible sur fond bleu */
+      text-align: center;
+      max-width: 80%;
     }
 
     @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-20px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
     }
   </style>
 </head>
@@ -48,11 +48,10 @@
   <h1><strong>TreeLand</strong></h1>
   <div class="loading-text">Chargement de TreeLand, veuillez patienter...</div>
 
-  <!-- Redirection automatique vers l'app après 3 secondes -->
   <script>
     setTimeout(() => {
-      window.location.href = "accueil.html"; // Page principale de l'app
-    }, 3000); // 3000 ms = 3 secondes
+      window.location.href = "accueil.html";
+    }, 3000);
   </script>
 </body>
 </html>
