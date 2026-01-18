@@ -1,5 +1,5 @@
 /* 🎨 Variables globales */
-:root {
+:rooooot {
   --primary: #003366;
   --secondary: #FFD700;
   --accent: #007bff;
@@ -9,7 +9,7 @@
 }
 
 /* Corps */
-bodyo {
+body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: var(--text-dark);
