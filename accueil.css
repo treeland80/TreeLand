@@ -1,4 +1,4 @@
-/* 🎨 Variables globales */
+/* ===================== Variables globales ===================== */
 :root {
   --primary: #003366;
   --secondary: #FFD700;
@@ -8,15 +8,19 @@
   --text-light: #fff;
 }
 
-/* Corps */
+/* ===================== Global Styles ===================== */
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: var(--text-dark);
-  background-color: #f5f5f5; /* Plus neutre, plus équilibré */
 }
 
-/* Barre tout en haut */
+/* ===================== Prehead / Header ===================== */
 .prehead {
   position: fixed;
   top: 0;
@@ -26,34 +30,30 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 80px; /* hauteur fixe */
+  height: 80px;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   color: var(--primary);
   font-weight: bold;
 }
 
-/* En-tête */
 header {
-  padding: 20px 10px 15px;
+  padding: 15px 10px;
   background: var(--primary);
   color: var(--secondary);
   text-align: center;
-  margin-top: 40px; /* Compense la hauteur .prehead */
+  margin-top: 80px; /* compense la préhead fixe */
 }
 
-/* Menu principal */
+/* ===================== Navigation ===================== */
 nav ul {
   display: flex;
   justify-content: center;
   background: var(--secondary);
   margin: 0;
-  padding: 10px 0;
+  padding: 5px 0;
   list-style: none;
-}
-
-nav ul li {
-  margin: 0 10px;
+  gap: 10px;
 }
 
 nav ul li a {
@@ -62,48 +62,19 @@ nav ul li a {
   font-weight: bold;
 }
 
-/* Pied de page principal */
+/* ===================== Footer ===================== */
 footer {
   text-align: center;
   padding: 15px;
   background: var(--primary);
-  color: white;
-}
-
-/* Navigation en bas */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
-  background: var(--secondary);
-  padding: 10px 0;
-  z-index: 1000;
-}
-
-.bottom-nav a {
-  text-decoration: none;
-  color: var(--primary);
-  font-weight: bold;
-}
-
-/* Grand pied de page */
-.footer {
-  background-color: var(--primary);
-  color: white;
-  padding: 20px;
-  padding-bottom: 60px; /* espace au-dessus de la bottom-nav */
-  text-align: center;
+  color: var(--text-light);
 }
 
 .footer-links {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 15px; /* espace entre les liens */
-  flex-wrap: wrap; /* autorise le retour à la ligne si trop serré */
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .footer-links a {
@@ -117,22 +88,252 @@ footer {
   color: white;
 }
 
-@media (max-width: 600px) {
-  .footer-links {
-    gap: 10px; /* espace réduit sur petit écran */
-  }
-}
-
-/* Icônes sociales */
 .footer-socials a img {
   width: 24px;
   height: 24px;
   filter: invert(100%);
+  margin: 5px;
+  transition: transform 0.3s;
 }
 
-.footer-socials a:hover {
+.footer-socials a:hover img {
   transform: scale(1.2);
 }
-.footer-socials a {
-    margin: 10px;
+
+/* ===================== Bottom Navigation ===================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: var(--secondary);
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* ===================== Section spacing ===================== */
+section {
+  padding: 10px 5px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* ===================== Card Base ===================== */
+.card, .ecard, .acard, .icard {
+  width: 100%;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: 5px 0;
+}
+
+.card:hover, .ecard:hover, .acard:hover, .icard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.card img, .ecard img, .acard-img, .icard img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content, .ecard-content, .acard-body, .icard-body {
+  padding: 10px 12px;
+}
+
+.title, .ecard .title, .acard-title, .icard h3 {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 5px 0 8px;
+}
+
+.description, .ecard .description, .acard-description, .icard .idescription {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.tag, .ecard .tag, .acard-tag, .icard .ibadge {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+/* Rating */
+.rating, .ecard .rating {
+  float: right;
+  color: #666;
+  font-size: 13px;
+}
+
+.rating i, .ecard .rating i {
+  color: gold;
+  margin-right: 4px;
+}
+
+/* Location */
+.location, .ecard .location, .acard-location, .icard .ilocation {
+  color: #777;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.location i, .ecard .location i, .acard-location-icon {
+  margin-right: 5px;
+}
+
+/* Footer / Seeking / Button */
+.ofooter, .ecard .footer, .acard-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.seeking, .ecard .seeking {
+  font-size: 13px;
+  color: #555;
+}
+
+.seeking span, .ecard .seeking span {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.contact-btn, .ecard .contact-btn, .acard-btn {
+  background-color: var(--accent);
+  color: white;
+  padding: 6px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.contact-btn:hover, .ecard .contact-btn:hover, .acard-btn:hover {
+  background-color: #005dc1;
+}
+
+/* ===================== Progress Bars ===================== */
+.iprogress-bar {
+  height: 6px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.iprogress-bar-fill {
+  height: 100%;
+  width: 42%;
+  background-color: var(--success);
+}
+
+.iprogress-text {
+  text-align: right;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* ===================== Flex Containers ===================== */
+.ecard-wrapper, .icards-container, .oproducts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Produit */
+.oproduct-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  padding: 1px;
+  width: 100px;
+  text-align: center;
+}
+
+.oproduct-card img {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.oproduct-name {
+  font-weight: bold;
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.oproduct-price {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 13px;
+  margin: 2px 0;
+}
+
+.oproduct-condition {
+  color: #888;
+  font-size: 11px;
+  margin: 2px 0;
+}
+
+.oview-button {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.oview-button a {
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  padding: 8px 16px;
+  border-radius: 5px;
+  color: var(--accent);
+  font-weight: bold;
+  display: inline-block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.oview-button a:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* ===================== Responsive ===================== */
+@media screen and (max-width: 400px) {
+  nav ul {
+    flex-direction: column;
+    padding: 5px 0;
   }
+  .bottom-nav {
+    flex-direction: column;
+    padding: 5px 0;
+  }
+  section {
+    margin: 5px 0;
+  }
+  .card, .ecard, .acard, .icard {
+    width: 90%;
+  }
+  .oproduct-card {
+    width: 90px;
+  }
+}
