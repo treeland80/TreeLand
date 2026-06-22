@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TreeLand - Enracinons un futur pour tous</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #2d4a1e;
+      color: #333;
+    }
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #f3efe2;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #4a7c2f, #3a6322);
+      text-align: center;
+      padding: 22px 16px 14px;
+      color: #fff;
+      position: relative;
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+      color: #fdfbf2;
+      text-shadow: 0 2px 4px rgba(0,0,0,.3);
+    }
+    header p {
+      font-style: italic;
+      color: #e3edcf;
+      margin-top: 4px;
+      font-size: .95rem;
+    }
+
+    /* Nav */
+    nav {
+      background: #355c20;
+      text-align: center;
+      padding: 12px 8px;
+    }
+    nav a {
+      color: #f3efe2;
+      text-decoration: none;
+      font-size: .95rem;
+      margin: 0 2px;
+    }
+    nav a.active { color: #d8e85a; font-weight: 700; }
+    nav .sep { color: #f3efe2; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      color: #fff;
+    }
+    .hero img { width: 100%; display: block; }
+    .hero-overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 20px 16px 26px;
+      background: linear-gradient(transparent, rgba(20,40,10,.75));
+      text-align: center;
+    }
+    .hero-overlay h2 {
+      font-size: 1.4rem;
+      text-shadow: 0 2px 5px rgba(0,0,0,.6);
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #4a7c2f;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 3px 6px rgba(0,0,0,.25);
+    }
+    .btn:hover { background: #3a6322; }
+
+    /* Mission */
+    .mission {
+      background: #f3efe2;
+      padding: 26px 18px 10px;
+      text-align: center;
+    }
+    .mission h3, .featured h3 {
+      font-size: 1.4rem;
+      color: #2d4a1e;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .mission-card {
+      background: #e9e2cc;
+      border: 1px solid #cfc6a8;
+      border-radius: 8px;
+      padding: 18px 16px;
+      font-size: .9rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Featured */
+    .featured { padding: 24px 16px; text-align: center; }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .product {
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px 8px 14px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.1);
+    }
+    .product img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+    .product p {
+      font-size: .8rem;
+      font-weight: 700;
+      margin: 8px 0;
+      color: #333;
+    }
+    .btn-sm {
+      display: inline-block;
+      background: #4a7c2f;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: .75rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Bottom */
+    .bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 16px 24px;
+    }
+    .invest {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px 12px;
+    }
+    .invest img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; z-index: 0;
+    }
+    .invest::after {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(30,55,15,.45); z-index: 1;
+    }
+    .invest > * { position: relative; z-index: 2; }
+    .invest h4 { font-size: 1.1rem; text-shadow: 0 1px 3px #000; }
+    .invest p { font-size: .8rem; text-shadow: 0 1px 3px #000; }
+
+    .contact {
+      background: #e9e2cc;
+      border: 1px solid #cfc6a8;
+      border-radius: 8px;
+      padding: 16px 12px;
+    }
+    .contact h4 {
+      color: #2d4a1e;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .contact input, .contact textarea {
+      width: 100%;
+      margin-bottom: 8px;
+      padding: 7px 9px;
+      border: 1px solid #bdb393;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: .8rem;
+      background: #fff;
+    }
+    .contact textarea { resize: vertical; min-height: 70px; }
+    .contact .btn { width: 100%; }
+
+    /* Footer */
+    footer {
+      background: #355c20;
+      color: #e3edcf;
+      text-align: center;
+      padding: 16px;
+      font-size: .8rem;
+    }
+
+    @media (max-width: 380px) {
+      .bottom { grid-template-columns: 1fr; }
+      .products { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>TREELAND</h1>
+      <p>Enracinons un futur pour tous</p>
+    </header>
+
+    <nav>
+      <span class="sep">[</span>
+      <a href="#" class="active">Home</a><span class="sep">|</span>
+      <a href="#">About</a><span class="sep">|</span>
+      <a href="#">Projects</a><span class="sep">|</span>
+      <a href="#">Shop</a><span class="sep">|</span>
+      <a href="#">Contact</a>
+      <span class="sep">]</span>
+    </nav>
+
+    <section class="hero">
+      <img src="hero.jpg" alt="Communauté plantant des arbres" />
+      <div class="hero-overlay">
+        <h2>Plant Trees &bull; Create Jobs &bull; Build Communities</h2>
+        <a href="#" class="btn">[ Learn More ]</a>
+      </div>
+    </section>
+
+    <section class="mission">
+      <h3>Our Mission</h3>
+      <div class="mission-card">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris.
+      </div>
+    </section>
+
+    <section class="featured">
+      <h3>Featured Products</h3>
+      <div class="products">
+        <div class="product">
+          <img src="product1.jpg" alt="Produit 1" />
+          <p>Product 1 Image</p>
+          <a href="#" class="btn-sm">[ Buy Now ]</a>
+        </div>
+        <div class="product">
+          <img src="product2.jpg" alt="Produit 2" />
+          <p>Product 2 Image</p>
+          <a href="#" class="btn-sm">[ Buy Now ]</a>
+        </div>
+        <div class="product">
+          <img src="product3.jpg" alt="Produit 3" />
+          <p>Product 3 Image</p>
+          <a href="#" class="btn-sm">[ Buy Now ]</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom">
+      <div class="invest">
+        <img src="invest.jpg" alt="Investir" />
+        <h4>INVEST WITH US</h4>
+        <p>Photo as the thriving community of sustainable forestry</p>
+        <a href="#" class="btn">[ Invest Now ]</a>
+      </div>
+      <div class="contact">
+        <h4>Contact Us</h4>
+        <input type="text" placeholder="Name:" />
+        <input type="email" placeholder="Email:" />
+        <textarea placeholder="Message:"></textarea>
+        <a href="#" class="btn">[ Send ]</a>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2026 TreeLand - All Rights Reserved
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f7f3e8;
+max-width:480px;
+margin:auto;
+}
+
+header{
+background:linear-gradient(#1b5e20,#4caf50);
+color:white;
+text-align:center;
+}
+
+.logo-area{
+padding:25px;
+}
+
+.logo-area h1{
+font-size:42px;
+font-family:serif;
+}
+
+.logo-area p{
+margin-top:8px;
+}
+
+nav{
+background:#164b17;
+padding:15px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 8px;
+}
+
+.active{
+background:#6aa84f;
+padding:6px 12px;
+border-radius:8px;
+}
+
+.hero img{
+width:100%;
+display:block;
+}
+
+.contact-title{
+text-align:center;
+padding:30px 20px;
+}
+
+.contact-title h2{
+font-size:40px;
+color:#1f4d1f;
+margin-bottom:10px;
+}
+
+.contact-container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+padding:15px;
+}
+
+.contact-form,
+.contact-info{
+background:white;
+padding:15px;
+border-radius:15px;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.contact-form h3,
+.contact-info h3{
+color:#1f4d1f;
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-top:10px;
+margin-bottom:5px;
+}
+
+input,
+textarea{
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+button{
+margin-top:15px;
+background:#4caf50;
+color:white;
+border:none;
+padding:12px;
+width:100%;
+border-radius:10px;
+font-size:16px;
+}
+
+.reply{
+margin-top:15px;
+font-size:14px;
+color:#555;
+}
+
+.info-item{
+display:flex;
+gap:15px;
+margin-bottom:20px;
+}
+
+.info-item i{
+width:50px;
+height:50px;
+background:#4caf50;
+color:white;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:20px;
+}
+
+.cta{
+margin:15px;
+background:#f8f4e7;
+border-radius:15px;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.cta img{
+width:120px;
+}
+
+.social-section{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+padding:15px;
+}
+
+.social-box,
+.thank-box{
+background:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+}
+
+.social-icons{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-top:15px;
+}
+
+.social-icons a{
+width:50px;
+height:50px;
+background:#4caf50;
+color:white;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:20px;
+text-decoration:none;
+}
+
+.thank-box img{
+width:100%;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+footer{
+background:#164b17;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:10px;
+}

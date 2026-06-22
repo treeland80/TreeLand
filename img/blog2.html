@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TreeLand Blog</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f2e8;
+}
+
+.container{
+max-width:480px;
+margin:auto;
+background:white;
+}
+
+/* HEADER */
+
+header{
+background:linear-gradient(to bottom,#0f5c1d,#3a8d29);
+color:white;
+text-align:center;
+padding:20px;
+}
+
+header h1{
+font-size:40px;
+letter-spacing:2px;
+}
+
+header p{
+font-size:16px;
+margin-top:5px;
+}
+
+nav{
+background:#0a3d13;
+padding:12px;
+text-align:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 8px;
+font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+display:flex;
+flex-wrap:wrap;
+background:#f8f4e7;
+padding:15px;
+}
+
+.hero-text{
+width:45%;
+padding:10px;
+}
+
+.hero-text h2{
+color:#1b4d1d;
+font-size:32px;
+margin-bottom:10px;
+}
+
+.hero-text p{
+line-height:1.5;
+}
+
+.hero-image{
+width:55%;
+}
+
+.hero-image img{
+width:100%;
+border-radius:10px;
+}
+
+/* FILTER */
+
+.filters{
+display:flex;
+overflow:auto;
+gap:10px;
+padding:15px;
+}
+
+.filters button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+background:#ece7d8;
+cursor:pointer;
+}
+
+.filters .active{
+background:#3c8d2f;
+color:white;
+}
+
+/* BLOG CARD */
+
+.card{
+display:flex;
+background:#faf9f2;
+margin:12px;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.card img{
+width:40%;
+object-fit:cover;
+}
+
+.content{
+padding:10px;
+}
+
+.content h3{
+color:#1b4d1d;
+font-size:20px;
+margin-bottom:8px;
+}
+
+.content p{
+font-size:14px;
+color:#555;
+margin-bottom:10px;
+}
+
+.meta{
+font-size:12px;
+color:#666;
+margin-bottom:10px;
+}
+
+.btn{
+background:#3c8d2f;
+color:white;
+padding:8px 15px;
+border-radius:8px;
+text-decoration:none;
+display:inline-block;
+}
+
+/* PAGINATION */
+
+.pagination{
+display:flex;
+justify-content:center;
+gap:10px;
+padding:20px;
+}
+
+.pagination button{
+width:40px;
+height:40px;
+border:none;
+border-radius:8px;
+background:#eee;
+}
+
+.pagination .current{
+background:#3c8d2f;
+color:white;
+}
+
+/* NEWSLETTER */
+
+.newsletter{
+background:#f7f0dd;
+padding:20px;
+text-align:center;
+}
+
+.newsletter h3{
+color:#1b4d1d;
+margin-bottom:10px;
+}
+
+.newsletter input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+margin:10px 0;
+}
+
+.newsletter button{
+background:#3c8d2f;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+}
+
+/* FOOTER */
+
+footer{
+background:#0f5c1d;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+<h1>TREELAND</h1>
+<p>Enracinons un futur pour tous</p>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Projects</a>
+<a href="#">Blog</a>
+<a href="#">Shop</a>
+<a href="#">Contact</a>
+</nav>
+
+<section class="hero">
+
+<div class="hero-text">
+<h2>OUR BLOG</h2>
+<p>Stories, tips and inspiration from our journey to a greener planet.</p>
+</div>
+
+<div class="hero-image">
+<img src="images/blog-banner.jpg">
+</div>
+
+</section>
+
+<div class="filters">
+<button class="active">All</button>
+<button>Tree Planting</button>
+<button>Sustainability</button>
+<button>Community</button>
+<button>Tips & Guides</button>
+</div>
+
+<!-- ARTICLE 1 -->
+
+<div class="card">
+<img src="images/tree1.jpg">
+
+<div class="content">
+<h3>Why Planting Trees Matters More Than Ever</h3>
+
+<p>Trees are vital to our planet's health.</p>
+
+<div class="meta">
+📅 May 10, 2026 • TreeLand Team • 5 min
+</div>
+
+<a href="#" class="btn">Read More</a>
+</div>
+</div>
+
+<!-- ARTICLE 2 -->
+
+<div class="card">
+<img src="images/tree2.jpg">
+
+<div class="content">
+<h3>Building Stronger Communities Through Green Jobs</h3>
+
+<p>Green jobs create opportunities and strengthen communities.</p>
+
+<div class="meta">
+📅 April 28, 2026 • TreeLand Team • 4 min
+</div>
+
+<a href="#" class="btn">Read More</a>
+</div>
+</div>
+
+<!-- ARTICLE 3 -->
+
+<div class="card">
+<img src="images/tree3.jpg">
+
+<div class="content">
+<h3>5 Simple Ways to Live More Sustainably</h3>
+
+<p>Small changes can lead to a big impact.</p>
+
+<div class="meta">
+📅 April 15, 2026 • TreeLand Team • 6 min
+</div>
+
+<a href="#" class="btn">Read More</a>
+</div>
+</div>
+
+<!-- ARTICLE 4 -->
+
+<div class="card">
+<img src="images/tree4.jpg">
+
+<div class="content">
+<h3>Teaching the Next Generation to Love Nature</h3>
+
+<p>Education is the key to a greener future.</p>
+
+<div class="meta">
+📅 April 2, 2026 • TreeLand Team • 3 min
+</div>
+
+<a href="#" class="btn">Read More</a>
+</div>
+</div>
+
+<div class="pagination">
+<button class="current">1</button>
+<button>2</button>
+<button>3</button>
+<button>8</button>
+</div>
+
+<section class="newsletter">
+
+<h3>STAY INSPIRED</h3>
+
+<p>Subscribe to our newsletter and get the latest stories and updates.</p>
+
+<input type="email" placeholder="Enter your email">
+
+<button>Subscribe</button>
+
+</section>
+
+<footer>
+© 2026 TreeLand - All Rights Reserved
+</footer>
+
+</div>
+
+</body>
+</html>
